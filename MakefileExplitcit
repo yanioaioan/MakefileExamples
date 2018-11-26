@@ -1,0 +1,14 @@
+TARGET = prog
+prog: main.o libA.a
+	gcc main.o libA.a -o prog
+	#or link the following way	
+	#gcc main.o -l A -o prog
+main.o:	 main.c
+	gcc -c main.c -o main.o
+libA.a: libA.o 
+	ar rcs libA.a libA.o 
+libA.o: libA.c libA.h
+	gcc -c libA.c -o libA.o
+clean:
+	rm -f *.o *.a prog
+
